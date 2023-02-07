@@ -12,7 +12,6 @@ class CompaniesRepository {
       "https://api.json-generator.com/templates/FmnJCH5HwlMM/data",
       { headers: { Authorization: `Bearer ${process.env.API_TOKEN}` } }
     );
-    console.log("response>>>", response);
     await Companies.bulkCreate(response.data);
     const data = await this.getAllCompanies();
     return data;

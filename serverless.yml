@@ -1,0 +1,17 @@
+service: companies
+frameworkVersion: "2 || 3"
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  profile: testingjs
+
+plugins:
+  - serverless-offline
+
+functions:
+  main:
+    handler: src/handler.handler
+    events:
+      - httpApi: "*"
+        # cors: true
