@@ -1,6 +1,7 @@
 const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize("sqlite::memory:");
 const Companies = require("./models/Companies");
+const Users = require("./models/User");
 
 return sequelize
   .authenticate()
@@ -9,7 +10,10 @@ return sequelize
     return Companies.sync();
   })
   .then((result) => {
-    console.log(`Company table created`);
+    return Users.sync();
+  })
+  .then((result) => {
+    console.log(`Company & User table created`);
     return result;
   })
   .catch((error) => {

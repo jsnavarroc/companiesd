@@ -1,10 +1,12 @@
 const express = require("express");
+require("dotenv").config();
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 require("./connection");
 const indexRouter = require("./routes/index");
 const companies = require("./routes/companies");
+const user = require("./routes/user");
 const port = process.env.PORT || 3000;
 const app = express();
 app.listen(port, () => {
@@ -20,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/companies", companies);
+app.use("/user", user);
 app.use("/", indexRouter);
 
 module.exports = app;

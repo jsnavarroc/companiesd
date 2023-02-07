@@ -4,7 +4,6 @@ const sequelize = new Sequelize("sqlite::memory:");
 const Companies = sequelize.define(
   "company",
   {
-    stations: Sequelize.STRING,
     nit: {
       type: Sequelize.STRING,
       unique: true,
@@ -35,7 +34,7 @@ const Companies = sequelize.define(
       primaryKey: true,
     },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 module.exports = Companies;

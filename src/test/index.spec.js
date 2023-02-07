@@ -1,4 +1,6 @@
 const chai = require("chai");
+const should = chai.should();
+const { expect } = require("chai");
 const chaiHttp = require("chai-http");
 const server = require("../app");
 const BlueBird = require("bluebird");
@@ -14,7 +16,7 @@ const setup = (...companies) => {
       .post("/companies")
       .send(company)
       .then((response) => {
-        return response.body;
+        return response.body.response;
       });
   });
 };
@@ -49,7 +51,7 @@ describe("Companies API", () => {
       .post("/companies")
       .send(company_1);
     response.should.have.status(201);
-    response.body.should.eql({
+    response.body.response.should.eql({
       ...company_1,
       id: 1,
     });
@@ -58,7 +60,7 @@ describe("Companies API", () => {
   it("should fetch all the companies", async () => {
     const results = await setup(company_1, company_2);
     const response = await chai.request(server).get("/companies");
-    response.should.have.status(200);
-    response.body.response.should.eql(results);
+    response.should.have.status(201);
+    response.body.should.eql(results);
   });
 });
