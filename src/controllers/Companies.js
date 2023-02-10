@@ -33,6 +33,14 @@ class CompaniesController {
       res.status(404).json({ error: error.message });
     }
   }
+  async updateCompanyById(req, res) {
+    try {
+      const data = await CompaniesRepository.updateCompanyById(req.body);
+      res.status(201).json({ response: data });
+    } catch (error) {
+      res.status(404).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = new CompaniesController();

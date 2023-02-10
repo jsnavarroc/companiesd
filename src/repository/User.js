@@ -12,7 +12,7 @@ class CompaniesRepository {
     });
     return user;
   }
-  async getUserById(email) {
+  async getUserByEmail(email) {
     const user = await Users.findOne({
       raw: true,
       where: { email },

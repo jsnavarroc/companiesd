@@ -31,9 +31,15 @@ class CompaniesRepository {
 
   async deleteCompanyById(id) {
     const company = await Companies.destroy({
-      where: { id: id },
+      where: { id },
     });
     return company;
+  }
+
+  async updateCompanyById(company) {
+    return await Companies.update(company, {
+      where: { id: company.id },
+    });
   }
 }
 

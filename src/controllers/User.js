@@ -12,15 +12,16 @@ class UserController {
   async getUserById(req, res) {
     try {
       const data = await UserRepository.getUserById(req.query.id);
-      res.status(201).json({ response: data });
+      res.status(201).json(data);
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
   }
   async getUserByEmail(req, res) {
     try {
-      const data = await UserRepository.getUserByEmail(req.query.email);
-      res.status(201).json({ response: data });
+      const { email } = req.body;
+      const data = await UserRepository.getUserByEmail(email);
+      res.status(201).json(data);
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
@@ -28,7 +29,7 @@ class UserController {
   async createUsers(req, res) {
     try {
       const data = await UserRepository.createUsers(req.body);
-      res.status(201).json({ response: data });
+      res.status(201).json(data);
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
